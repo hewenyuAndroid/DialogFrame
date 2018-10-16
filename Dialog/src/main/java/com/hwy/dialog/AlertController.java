@@ -16,11 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hwy.dialog.listener.OnDialogClickListener;
 import com.hwy.dialog.listener.OperateMessageDialogView;
+import com.hwy.dialog.listener.OperateTipsDialogView;
+import com.hwy.dialog.type.TipsStyle;
+import com.hwy.dialog.widget.LoadingView;
 
 /**
  * 作者: hewenyu
@@ -475,5 +479,72 @@ class AlertController {
 
     // endregion -------------------------------------------------------
 
+    // region --------------------------------- TipAlertParams ------------------------------------
+
+    public static class TipAlertParams extends AlertParams {
+
+        public CharSequence mTips;
+
+        public int mTipsSize;
+
+        public int mTipsColor;
+
+        public TipsStyle mTipsStyle = TipsStyle.LOADING;
+
+        public int mTipsIcon = -1;
+
+        /**
+         * 操作 tipsDialog 里面的视图
+         */
+        public OperateTipsDialogView mOperateTipsView;
+
+        public TipAlertParams(Context context, int themeResId) {
+            super(context, themeResId);
+        }
+
+        @Override
+        public void apply(AlertController mAlert) {
+            super.apply(mAlert);
+
+            View icon = null;
+
+            if (mTipsStyle == TipsStyle.LOADING) {
+                LoadingView loadingView = new LoadingView(mContext);
+                loadingView.setColor(Color.WHITE);
+                loadingView.setSize(LoadingView.dp2px(mContext, 32));
+                LinearLayout.LayoutParams loadingViewLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                loadingView.setLayoutParams(loadingViewLP);
+                ((ViewGroup) viewHolder.getContentView()).addView(loadingView, 0);
+                icon = loadingView;
+            } else if (mTipsStyle == TipsStyle.ICON && mTipsIcon != -1) {
+                ImageView imageView = new ImageView(mContext);
+                LinearLayout.LayoutParams imageViewLP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                imageView.setLayoutParams(imageViewLP);
+                imageView.setImageResource(mTipsIcon);
+                ((ViewGroup) viewHolder.getContentView()).addView(imageView, 0);
+                icon = imageView;
+            }
+
+            TextView tips = viewHolder.getView(R.id.tv_tips);
+
+            if (!TextUtils.isEmpty(mTips)) {
+                tips.setText(mTips);
+            }
+
+            if (mTipsSize != 0) {
+                tips.setTextSize(mTipsSize);
+            }
+
+            if (mTipsColor != 0) {
+                tips.setTextColor(mTipsColor);
+            }
+
+            if (mOperateTipsView != null) {
+                mOperateTipsView.update(icon, tips);
+            }
+
+        }
+
+    }
 
 }

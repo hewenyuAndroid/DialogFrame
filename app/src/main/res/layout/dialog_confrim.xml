@@ -19,11 +19,12 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="12dp"
-        android:gravity="center_vertical|left"
-        android:text="info"
+        android:gravity="center_horizontal"
+        android:text="dialog message"
         android:textColor="#777777"
         android:textSize="14sp" />
 

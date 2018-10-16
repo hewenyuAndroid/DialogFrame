@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.hwy.dialog.listener.OnDialogClickListener;
 import com.hwy.dialog.listener.OperateMessageDialogView;
+import com.hwy.dialog.listener.OperateTipsDialogView;
+import com.hwy.dialog.type.TipsStyle;
 
 /**
  * 作者: hewenyu
@@ -611,4 +613,184 @@ public class AlertDialog extends Dialog {
 
     // endregion -----------------------------------------------------------
 
+    // region ----------------------- TipsBuilder ---------------------------------
+
+    public static class TipBuilder extends Builder {
+
+        private final AlertController.TipAlertParams mParams;
+
+        public TipBuilder(Context context) {
+            this(context, R.style.dialog);
+        }
+
+        public TipBuilder(Context context, int themeResId) {
+            super(context, themeResId);
+            P = new AlertController.TipAlertParams(context, themeResId);
+            mParams = (AlertController.TipAlertParams) P;
+            setContentView(R.layout.layout_dialog_tips);
+        }
+
+        // region ------------------- 重写父类的方法 ----------------------------
+
+        @Override
+        public TipBuilder setContentView(View view) {
+            return (TipBuilder) super.setContentView(view);
+        }
+
+        @Override
+        public TipBuilder setContentView(int layoutId) {
+            return (TipBuilder) super.setContentView(layoutId);
+        }
+
+        @Override
+        public TipBuilder setText(int viewId, CharSequence text) {
+            return (TipBuilder) super.setText(viewId, text);
+        }
+
+        @Override
+        public TipBuilder setOnClickListener(int viewId, OnDialogClickListener listener) {
+            return (TipBuilder) super.setOnClickListener(viewId, listener);
+        }
+
+        @Override
+        public TipBuilder fromBottom(boolean isAnimation) {
+            return (TipBuilder) super.fromBottom(isAnimation);
+        }
+
+        @Override
+        public TipBuilder setGravity(int gravity) {
+            return (TipBuilder) super.setGravity(gravity);
+        }
+
+        @Override
+        public TipBuilder setWidthAndHeight(int width, int height) {
+            return (TipBuilder) super.setWidthAndHeight(width, height);
+        }
+
+        @Override
+        public TipBuilder setWidthPercent(float percent) {
+            return (TipBuilder) super.setWidthPercent(percent);
+        }
+
+        @Override
+        public TipBuilder addDefaultAnimation() {
+            return (TipBuilder) super.addDefaultAnimation();
+        }
+
+        @Override
+        public TipBuilder addAnimation(int animStyle) {
+            return (TipBuilder) super.addAnimation(animStyle);
+        }
+
+        @Override
+        public TipBuilder setAnimations(int styleAnimation) {
+            return (TipBuilder) super.setAnimations(styleAnimation);
+        }
+
+        @Override
+        public TipBuilder setCancelable(boolean cancelable) {
+            return (TipBuilder) super.setCancelable(cancelable);
+        }
+
+        @Override
+        public TipBuilder setOnCancelListener(OnCancelListener onCancelListener) {
+            return (TipBuilder) super.setOnCancelListener(onCancelListener);
+        }
+
+        @Override
+        public TipBuilder setOnDismissListener(OnDismissListener onDismissListener) {
+            return (TipBuilder) super.setOnDismissListener(onDismissListener);
+        }
+
+        @Override
+        public TipBuilder setOnKeyListener(OnKeyListener onKeyListener) {
+            return (TipBuilder) super.setOnKeyListener(onKeyListener);
+        }
+
+        @Override
+        public TipBuilder setCorner(float corner) {
+            return (TipBuilder) super.setCorner(corner);
+        }
+
+        @Override
+        public TipBuilder setBackgroundColor(int backgroundColor) {
+            return (TipBuilder) super.setBackgroundColor(backgroundColor);
+        }
+
+        @Override
+        public TipBuilder setDimAmount(float dimAmount) {
+            return (TipBuilder) super.setDimAmount(dimAmount);
+        }
+
+        // endregion ------------------------------------------------------------
+
+        /**
+         * 设置Tips显示的类型
+         *
+         * @param tipsStyle
+         * @return
+         */
+        public TipBuilder setTipsStyle(TipsStyle tipsStyle) {
+            mParams.mTipsStyle = tipsStyle;
+            return this;
+        }
+
+        /**
+         * 设置Tips的图标
+         *
+         * @param resId
+         * @return
+         */
+        public TipBuilder setTipsIcon(int resId) {
+            mParams.mTipsIcon = resId;
+            return this;
+        }
+
+        /**
+         * 设置 tips 提示信息
+         *
+         * @param text
+         * @return
+         */
+        public TipBuilder setTipsText(CharSequence text) {
+            mParams.mTips = text;
+            return this;
+        }
+
+        /**
+         * 设置tips文字的大小
+         *
+         * @param size
+         * @return
+         */
+        public TipBuilder setTipsSize(int size) {
+            mParams.mTipsSize = size;
+            return this;
+        }
+
+        /**
+         * 设置 tips 文字的颜色
+         *
+         * @param color
+         * @return
+         */
+        public TipBuilder setTipsColor(int color) {
+            mParams.mTipsColor = color;
+            return this;
+        }
+
+        /**
+         * 监听Tips
+         *
+         * @param operateTipsDialogView
+         * @return
+         */
+        public TipBuilder operateTipsDialogView(OperateTipsDialogView operateTipsDialogView) {
+            mParams.mOperateTipsView = operateTipsDialogView;
+            return this;
+        }
+
+    }
+
+    // endregion
 }
