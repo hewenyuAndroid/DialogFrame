@@ -14,4 +14,11 @@
        android:inputType="text"
        android:onClick="showNormal"/>
 
+   <Button
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:text="MessageDialog"
+       android:inputType="text"
+       android:onClick="showMessage"/>
+
 </LinearLayout>

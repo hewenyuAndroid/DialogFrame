@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.hwy.dialog.listener.OnDialogClickListener;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -57,11 +59,17 @@ class ViewHolder {
      *
      * @param viewId
      * @param listener
+     * @param dialog
      */
-    public void setOnClickListener(int viewId, View.OnClickListener listener) {
+    public void setOnClickListener(int viewId, final OnDialogClickListener listener, final AlertDialog dialog) {
         View view = getView(viewId);
         if (view != null) {
-            view.setOnClickListener(listener);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(dialog, v);
+                }
+            });
         }
     }
 
