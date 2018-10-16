@@ -158,16 +158,6 @@ public class AlertDialog extends Dialog {
             return this;
         }
 
-        /**
-         * 添加动画
-         *
-         * @param animStyle
-         * @return
-         */
-        public Builder addAnimation(int animStyle) {
-            P.mAnimations = animStyle;
-            return this;
-        }
 
         /**
          * 设置动画
@@ -351,11 +341,6 @@ public class AlertDialog extends Dialog {
         @Override
         public MessageBuilder addDefaultAnimation() {
             return (MessageBuilder) super.addDefaultAnimation();
-        }
-
-        @Override
-        public MessageBuilder addAnimation(int animStyle) {
-            return (MessageBuilder) super.addAnimation(animStyle);
         }
 
         @Override
@@ -675,11 +660,6 @@ public class AlertDialog extends Dialog {
         @Override
         public TipBuilder addDefaultAnimation() {
             return (TipBuilder) super.addDefaultAnimation();
-        }
-
-        @Override
-        public TipBuilder addAnimation(int animStyle) {
-            return (TipBuilder) super.addAnimation(animStyle);
         }
 
         @Override
