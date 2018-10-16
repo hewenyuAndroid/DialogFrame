@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.MessageBuilder(this)
                 .setCancel("取消")
                 .addDefaultAnimation()
-                .setWidthPercent(0.63f)
+                .setWidthPercent(0.65f)
                 .setGravity(Gravity.CENTER)
                 .setCorner(8)
                 .setBackgroundColor(Color.WHITE)
-                .setMessage("是否确认发送消息?")
+                .setMessage("密码错误")
                 .setDimAmount(0.5f)
                 .setOnConfirmClickListener(new OnDialogClickListener() {
                     @Override

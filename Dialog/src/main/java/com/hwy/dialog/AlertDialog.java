@@ -597,6 +597,16 @@ public class AlertDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 隐藏标题
+         *
+         * @return
+         */
+        public MessageBuilder hideTitle() {
+            mParams.mHideTitle = true;
+            return this;
+        }
+
     }
 
     // endregion -----------------------------------------------------------

@@ -357,6 +357,11 @@ class AlertController {
          */
         public int mLineColor;
 
+        /**
+         * 是否隐藏标题
+         */
+        public boolean mHideTitle = false;
+
         public MessageAlertParams(Context context, int themeResId) {
             super(context, themeResId);
         }
@@ -400,6 +405,10 @@ class AlertController {
             }
             if (mTitleSize > 0) {
                 tvTitle.setTextSize(mTitleSize);
+            }
+
+            if (mHideTitle) {
+                tvTitle.setVisibility(View.GONE);
             }
 
             // endregion ---------------------------------------
