@@ -48,5 +48,25 @@
         android:onClick="showTipsInfo"
         android:text="TipsInfo" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="text"
+        android:onClick="showMessageUI"
+        android:text="项目使用的风格Message" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="text"
+        android:onClick="showEditUI"
+        android:text="项目使用的风格Edit" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="text"
+        android:onClick="showOptionUI"
+        android:text="项目使用的风格两个选项" />
+
 
 </LinearLayout>

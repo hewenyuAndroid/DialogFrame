@@ -1,12 +1,17 @@
 package com.hwy.dialogframe;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +20,7 @@ import com.hwy.dialog.listener.OnDialogClickListener;
 import com.hwy.dialog.listener.OperateMessageDialogView;
 import com.hwy.dialog.listener.OperateTipsDialogView;
 import com.hwy.dialog.type.TipsStyle;
+import com.hwy.dialog.util.KeyBoardUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -209,5 +215,135 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         }, 2000);
+    }
+
+    public void showMessageUI(View view) {
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setContentView(R.layout.layout_dialog_message_ui)
+                .addDefaultAnimation()
+                .setWidthPercent(0.787f)
+                .setGravity(Gravity.CENTER)
+                .setCorner(8)
+                .setText(R.id.tv_dialog_title, "标题")
+                .setText(R.id.tv_dialog_content, "消息内容")
+                .setText(R.id.tv_dialog_confirm, "确认")
+                .setText(R.id.tv_dialog_cancel, "取消")
+                .setCancelable(true)
+                .setBackgroundColor(Color.WHITE)
+                .setDimAmount(0.5f)
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_cancel, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        dialog.dismiss();
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_confirm, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        Toast.makeText(mContext, "确认", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+    }
+
+    public void showEditUI(View view) {
+
+        String info = "";
+        String hint = "请输入...";
+
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setContentView(R.layout.layout_dialog_edit_ui)
+                .addDefaultAnimation()
+                .setWidthPercent(0.787f)
+                .setGravity(Gravity.CENTER)
+                .setCorner(8)
+                .setText(R.id.tv_dialog_title, "标题")
+                .setText(R.id.et_dialog_content, null == info ? "" : info)
+                .setText(R.id.tv_dialog_confirm, "确认")
+                .setText(R.id.tv_dialog_cancel, "取消")
+                .setCancelable(true)
+                .setBackgroundColor(Color.WHITE)
+                .setDimAmount(0.5f)
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_cancel, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        dialog.dismiss();
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_confirm, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        Toast.makeText(mContext, "确认", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+
+        EditText etContent = dialog.getView(R.id.et_dialog_content);
+        if (!TextUtils.isEmpty(hint)) {
+            etContent.setHint(hint);
+        }
+
+        // 光标定位到最后
+        etContent.setSelection(etContent.getText().toString().length());
+
+        // 延迟显示键盘
+        KeyBoardUtil.showKeyBoard(etContent);
+
+    }
+
+
+    public void showOptionUI(View view) {
+
+        AlertDialog dialog = new AlertDialog.Builder(mContext)
+                .setContentView(R.layout.layout_dialog_two_option_ui)
+                .addDefaultAnimation()
+                .setWidthPercent(0.787f)
+                .setGravity(Gravity.CENTER)
+                .setCorner(8)
+                .setCancelable(true)
+                .setBackgroundColor(Color.WHITE)
+                .setDimAmount(0.5f)
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_top_option, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        dialog.dismiss();
+                        Toast.makeText(mContext, "top", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setOnClickListener(R.id.tv_dialog_bottom_option, new OnDialogClickListener() {
+                    @Override
+                    public void onClick(AlertDialog dialog, View view) {
+                        dialog.dismiss();
+                        Toast.makeText(mContext, "bottom", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
+
+        TextView top = dialog.getView(R.id.tv_dialog_top_option);
+        TextView bottom = dialog.getView(R.id.tv_dialog_bottom_option);
+
+        Drawable drawable = ContextCompat.getDrawable(mContext, R.drawable.icon_tick);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+        top.setCompoundDrawables(null, null, drawable, null);
+
     }
 }
