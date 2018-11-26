@@ -9,9 +9,10 @@
 ![单个按钮](https://github.com/hewenyuAndroid/DialogFrame/blob/master/screen/singleDialog.gif)
 ![TipsLoading](https://github.com/hewenyuAndroid/DialogFrame/blob/master/screen/tipsLoadingDialog.gif)
 ![TipsIcon](https://github.com/hewenyuAndroid/DialogFrame/blob/master/screen/tipsIconDialog.gif)
+![ui](https://github.com/hewenyuAndroid/DialogFrame/blob/master/screen/ui.gif)
 
 ### 引用方式
-> compile 'com.hewenyu:Dialog:1.0'
+> compile 'com.hewenyu:Dialog:1.0.1'
 
 ### 使用方式
 

@@ -217,6 +217,11 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    /**
+     * 显示信息
+     *
+     * @param view
+     */
     public void showMessageUI(View view) {
         AlertDialog dialog = new AlertDialog.Builder(mContext)
                 .setContentView(R.layout.layout_dialog_message_ui)
@@ -252,6 +257,11 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * 显示编辑框
+     *
+     * @param view
+     */
     public void showEditUI(View view) {
 
         String info = "";
@@ -304,6 +314,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * 显示两个参数
+     *
+     * @param view
+     */
     public void showOptionUI(View view) {
 
         AlertDialog dialog = new AlertDialog.Builder(mContext)
